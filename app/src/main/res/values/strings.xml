@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">Cvicenie2</string>
+    <string name="title_login" translatable="false">Prihlasenie</string>
+    <string name="title_intro" translatable="false">Intro</string>
+    <string name="title_signup" translatable="false">Registracia</string>
+    <string name="map" translatable="false">Map</string>
+    <string name="feed" translatable="false">Feed</string>
+    <string name="profile" translatable="false">Profile</string>
+    <string name="mapbox_access_token" translatable="false"> verejny token </string>
+</resources>
