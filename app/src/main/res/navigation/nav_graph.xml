@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.cvicenie2.SignInFragment"
+        android:name="com.example.cvicenie2.SignUpFragment"
         android:label="SignupFragment">
         <action
             android:id="@+id/action_intro_login"
@@ -36,6 +36,10 @@
         <action
             android:id="@+id/action_intro"
             app:destination="@id/introFragment" />
+        <action
+            android:id="@+id/action_signup_feed"
+            app:popUpToInclusive="true"
+            app:destination="@id/feedFragment" />
     </fragment>
 
     <fragment
@@ -81,5 +85,8 @@
     <action
         android:id="@+id/action_to_profile"
         app:destination="@id/profileFragment" />
-
+    <action
+        android:id="@+id/action_signup_feed"
+        app:popUpToInclusive="true"
+        app:destination="@id/feedFragment" />
 </navigation>

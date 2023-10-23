@@ -30,8 +30,8 @@
 
     <EditText
         android:id="@+id/email_edit_text"
-        android:layout_width="339dp"
-        android:layout_height="41dp"
+        android:layout_width="342dp"
+        android:layout_height="65dp"
         android:layout_marginTop="12dp"
         android:hint="example@mail.com"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,8 +50,8 @@
 
     <EditText
         android:id="@+id/username_edit_text"
-        android:layout_width="339dp"
-        android:layout_height="41dp"
+        android:layout_width="342dp"
+        android:layout_height="73dp"
         android:layout_marginTop="12dp"
         android:hint="Put username here"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="339dp"
-        android:layout_height="41dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:hint="Put password here"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,8 +90,8 @@
 
     <EditText
         android:id="@+id/password_again_edit_text"
-        android:layout_width="339dp"
-        android:layout_height="41dp"
+        android:layout_width="342dp"
+        android:layout_height="65dp"
         android:layout_marginTop="40dp"
         android:hint="Put password again here"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,12 +100,13 @@
 
 
     <Button
-        android:id="@+id/submitButton"
+        android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="104dp"
         android:text="Submit"
+        android:onClick="@{()->model.registerUser()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
