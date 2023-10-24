@@ -14,6 +14,7 @@ import com.example.cvicenie2.adapters.MyItem
 
 class FeedFragment : Fragment(R.layout.fragment_feed) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
 
         // Inicializácia ViewModel

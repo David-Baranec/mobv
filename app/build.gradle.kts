@@ -42,7 +42,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
-//    implementation("com.mapbox.maps:android:10.16.0")
+    implementation("com.mapbox.maps:android:10.16.0")
+//    implementation ("com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("com.google.android.gms:play-services-maps:18.1.0")
@@ -52,4 +53,6 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.5.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 }
