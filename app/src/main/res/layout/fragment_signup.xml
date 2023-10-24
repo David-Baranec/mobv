@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="-32dp">
+    tools:layout_editor_absoluteY="52dp">
 
     <TextView
         android:id="@+id/header_label"
@@ -12,29 +12,48 @@
         android:layout_height="34dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="28dp"
-        android:text="Log in"
+        android:text="Sign in"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/username_label"
+        android:id="@+id/email_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="104dp"
-        android:text="Username:"
+        android:text="Email:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_label"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/username_edit_text"
-        android:layout_width="339dp"
-        android:layout_height="41dp"
+        android:id="@+id/email_edit_text"
+        android:layout_width="342dp"
+        android:layout_height="65dp"
         android:layout_marginTop="12dp"
-        android:hint="Username"
+        android:hint="example@mail.com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_label" />
+
+    <TextView
+        android:id="@+id/username_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="44dp"
+        android:text="Username:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
+
+    <EditText
+        android:id="@+id/username_edit_text"
+        android:layout_width="342dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="12dp"
+        android:hint="Put username here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_label" />
@@ -44,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="44dp"
         android:text="Password:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_edit_text" />
@@ -52,30 +71,42 @@
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="339dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:hint="Password"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:hint="Put password here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_label" />
 
-    <Button
-        android:id="@+id/submitButton"
+    <TextView
+        android:id="@+id/password_again_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="100dp"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="40dp"
+        android:text="Password again:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
+
+    <EditText
+        android:id="@+id/password_again_edit_text"
+        android:layout_width="342dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="40dp"
+        android:hint="Put password again here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_again_label" />
+
 
     <Button
-        android:id="@+id/resetPasswordButton"
+        android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="100dp"
-        android:text="Reset password"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="44dp"
+        android:onClick="@{()->model.registerUser()}"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -83,12 +114,11 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="44dp"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.118"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

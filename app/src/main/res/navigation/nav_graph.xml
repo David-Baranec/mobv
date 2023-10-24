@@ -6,16 +6,19 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.cvicenie2.LoginFragment"
+        android:name="com.example.cvicenie2.fragments.LoginFragment"
         android:label="LoginFragment">
         <action
             android:id="@+id/action_intro"
             app:destination="@id/introFragment" />
+        <action
+            android:id="@+id/action_login_feed"
+            app:destination="@id/feedFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.example.cvicenie2.IntroFragment"
+        android:name="com.example.cvicenie2.fragments.IntroFragment"
         android:label="IntroFragment">
 
         <action
@@ -28,7 +31,7 @@
 
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.cvicenie2.SignUpFragment"
+        android:name="com.example.cvicenie2.fragments.SignUpFragment"
         android:label="SignupFragment">
         <action
             android:id="@+id/action_intro_login"
@@ -38,7 +41,6 @@
             app:destination="@id/introFragment" />
         <action
             android:id="@+id/action_signup_feed"
-            app:popUpToInclusive="true"
             app:destination="@id/feedFragment" />
     </fragment>
 
@@ -49,12 +51,12 @@
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.example.cvicenie2.MapFragment"
+        android:name="com.example.cvicenie2.fragments.MapFragment"
         android:label="MapFragment" />
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.cvicenie2.ProfileFragment"
+        android:name="com.example.cvicenie2.fragments.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/resetPasswordFragment"
@@ -87,6 +89,5 @@
         app:destination="@id/profileFragment" />
     <action
         android:id="@+id/action_signup_feed"
-        app:popUpToInclusive="true"
         app:destination="@id/feedFragment" />
 </navigation>

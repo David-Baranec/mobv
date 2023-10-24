@@ -8,10 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvicenie2.BottomBar
-import com.example.cvicenie2.FeedViewModel
+import com.example.cvicenie2.viewmodels.FeedViewModel
 import com.example.cvicenie2.R
 import com.example.cvicenie2.adapters.FeedAdapter
-import com.example.cvicenie2.adapters.MyItem
 
 class FeedFragment : Fragment(R.layout.fragment_feed) {
     private lateinit var viewModel: FeedViewModel
