@@ -1,5 +1,4 @@
 package com.example.cvicenie2.fragments
-
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -13,35 +12,29 @@ import com.example.cvicenie2.adapters.FeedAdapter
 import com.example.cvicenie2.adapters.MyItem
 
 class FeedFragment : Fragment(R.layout.fragment_feed) {
+    private lateinit var viewModel: FeedViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
+        view.findViewById<BottomBar>(R.id.bottom_bar).setActive(BottomBar.FEED)
 
         // Inicializácia ViewModel
-        val viewModel = ViewModelProvider(this)[FeedViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[FeedViewModel::class.java]
 
-        view.findViewById<BottomBar>(R.id.bottom_bar).setActive(BottomBar.FEED)
         val recyclerView = view.findViewById<RecyclerView>(R.id.feed_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(context)
         val feedAdapter = FeedAdapter()
         recyclerView.adapter = feedAdapter
-        feedAdapter.updateItems(listOf(
-            MyItem(1, R.drawable.baseline_feed_24,"Prvy"),
-            MyItem(2, R.drawable.baseline_map_24,"Druhy"),
-            MyItem(3, R.drawable.baseline_account_box_24,"Treti"),
-            MyItem(4, R.drawable.baseline_feed_24,"Prvy"),
-            MyItem(5, R.drawable.baseline_map_24,"Druhy"),
-            MyItem(6, R.drawable.baseline_account_box_24,"Treti"),
-        ))
-        val newItems = mutableListOf<MyItem>()
-        for (i in 1 .. 100) {
-            newItems.add(MyItem(i, R.drawable.baseline_feed_24, "Text $i"))
+        // Pozorovanie zmeny hodnoty
+        viewModel.feed_items.observe(viewLifecycleOwner) { items ->
+            // Tu môžete aktualizovať UI podľa hodnoty stringValue
+            feedAdapter.updateItems(items)
         }
-
-
-        viewModel.sampleString.observe(viewLifecycleOwner){
-                new_items -> feedAdapter.updateItems(new_items)
-        }
-        viewModel.updateString(newItems)
+        viewModel.updateItems(
+            listOf(
+                MyItem(0, R.drawable.baseline_feed_24, "Prvy"),
+                MyItem(1, R.drawable.baseline_map_24, "Druhy"),
+                MyItem(2, R.drawable.baseline_account_box_24, "Treti"),
+            )
+        )
     }
 }

@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import com.example.cvicenie2.adapters.MyItem
 
 class FeedViewModel : ViewModel() {
-    private val _items = MutableLiveData<List<MyItem>>()
-    val sampleString: LiveData<List<MyItem>> get() = _items
+    private val _feed_items = MutableLiveData<List<MyItem>>()
+    val feed_items: LiveData<List<MyItem>> get() = _feed_items
 
-    fun updateString(new_items: List<MyItem>) {
-        _items.postValue(new_items)
+    fun updateItems(items: List<MyItem>) {
+        _feed_items.value = items
     }
 }
