@@ -11,42 +11,56 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.example.cvicenie2.R
 import com.example.cvicenie2.data.api.DataRepository
+import com.example.cvicenie2.databinding.FragmentLoginBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var viewModel: AuthViewModel
+    private var binding: FragmentLoginBinding? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 return AuthViewModel(DataRepository.getInstance()) as T
             }
         })[AuthViewModel::class.java]
+    }
 
-        view.findViewById<Button>(R.id.submit_button).apply {
-            setOnClickListener {
-                val username: String =
-                    view.findViewById<EditText>(R.id.edit_text_username).text.toString()
-                val password: String =
-                    view.findViewById<EditText>(R.id.edit_text_password).text.toString()
-                login(username, password)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentLoginBinding.bind(view).apply {
+            lifecycleOwner = viewLifecycleOwner
+        }.also { bnd ->
+            bnd.submitButton.apply {
+                setOnClickListener {
+                    val username: String = bnd.editTextUsername.text.toString()
+                    val password: String = bnd.editTextPassword.text.toString()
+                    login(username, password)
+                }
             }
-        }
 
-        viewModel.loginResult.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) {
-                requireView().findNavController().navigate(R.id.action_login_feed)
-            } else {
-                Snackbar.make(
-                    view.findViewById(R.id.submit_button),
-                    it,
-                    Snackbar.LENGTH_SHORT
-                ).show()
+            viewModel.loginResult.observe(viewLifecycleOwner) {
+                if (it.isEmpty()) {
+                    requireView().findNavController().navigate(R.id.action_login_feed)
+                } else {
+                    Snackbar.make(
+                        bnd.submitButton,
+                        it,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             }
-        }
 
+        }
+    }
+
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
     }
 
     private fun login(username: String, password: String) {

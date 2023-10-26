@@ -1,38 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <data>
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    </data>
 
-    <Button
-        android:id="@+id/log_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log in"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toStartOf="@+id/sign_in_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign in"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/log_in_button"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zadanie"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_login"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/signup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_signup"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/login"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

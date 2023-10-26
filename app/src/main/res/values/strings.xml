@@ -7,4 +7,13 @@
     <string name="feed" translatable="false">Feed</string>
     <string name="profile" translatable="false">Profile</string>
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoieGJhcmFuZWNkIiwiYSI6ImNsbm13MWozejAwOTAydnBmZnZrcWl2eTMifQ.EJhgjDiQTbbtYbPLYw_5BQ</string>
+    <string name="email">Email:</string>
+    <string name="zadajte_email">Zadajte email</string>
+    <string name="username">Username:</string>
+    <string name="zadajte_username">Zadajte username</string>
+    <string name="heslo">Heslo</string>
+    <string name="zadajte_heslo">Zadajte heslo</string>
+    <string name="zopakujte_heslo">Zopakujte heslo</string>
+    <string name="registruj_sa">Registruj sa</string>
+    <string name="prihlasit_sa">Prihlasit sa</string>
 </resources>

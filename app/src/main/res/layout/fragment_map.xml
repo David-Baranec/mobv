@@ -1,29 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.IntroFragment">
-    <com.mapbox.maps.MapView xmlns:mapbox="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/mapView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        mapbox:mapbox_cameraTargetLat="48.15308"
-        mapbox:mapbox_cameraTargetLng="17.07325"
-        mapbox:mapbox_cameraZoom="9.0"
-        mapbox:layout_constraintTop_toTopOf="parent"
-        mapbox:layout_constraintBottom_toTopOf="@id/bottom_bar"
-        mapbox:layout_constraintStart_toStartOf="parent"
-        mapbox:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingClass" />
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <com.example.cvicenie2.BottomBar
-        android:id="@+id/bottom_bar"
+
+
+
+
+    <data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </data>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        android:layout_height="match_parent">
+
+
+
+
+
+
+
+        <com.mapbox.maps.MapView xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+
+            android:id="@+id/mapView"
+
+            android:layout_width="0dp"
+
+            android:layout_height="0dp"
+
+            mapbox:mapbox_cameraTargetLat="40.7128"
+
+            mapbox:mapbox_cameraTargetLng="-74.0060"
+
+            mapbox:mapbox_cameraZoom="9.0"
+
+            mapbox:layout_constraintTop_toTopOf="parent"
+
+            mapbox:layout_constraintBottom_toTopOf="@id/bottom_bar"
+
+            mapbox:layout_constraintStart_toStartOf="parent"
+
+            mapbox:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+
+
+
+        <com.example.cvicenie2.BottomBar
+            android:id="@+id/bottom_bar"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingClass" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
