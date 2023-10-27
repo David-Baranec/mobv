@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Cvicenie2</string>
     <string name="title_login" translatable="false">Prihlasenie</string>
     <string name="title_intro" translatable="false">Intro</string>
@@ -7,13 +7,15 @@
     <string name="feed" translatable="false">Feed</string>
     <string name="profile" translatable="false">Profile</string>
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoieGJhcmFuZWNkIiwiYSI6ImNsbm13MWozejAwOTAydnBmZnZrcWl2eTMifQ.EJhgjDiQTbbtYbPLYw_5BQ</string>
-    <string name="email">Email:</string>
-    <string name="zadajte_email">Zadajte email</string>
-    <string name="username">Username:</string>
-    <string name="zadajte_username">Zadajte username</string>
-    <string name="heslo">Heslo</string>
-    <string name="zadajte_heslo">Zadajte heslo</string>
-    <string name="zopakujte_heslo">Zopakujte heslo</string>
-    <string name="registruj_sa">Registruj sa</string>
-    <string name="prihlasit_sa">Prihlasit sa</string>
+    <string name="email" translatable="false">Email:</string>
+    <string name="zadajte_email" translatable="false">Zadajte email</string>
+    <string name="username" translatable="false">Username:</string>
+    <string name="zadajte_username" translatable="false">Zadajte username</string>
+    <string name="heslo" translatable="false">Heslo</string>
+    <string name="zadajte_heslo" translatable="false">Zadajte heslo</string>
+    <string name="zopakujte_heslo" translatable="false">Zopakujte heslo</string>
+    <string name="registruj_sa" translatable="false">Registruj sa</string>
+    <string name="prihlasit_sa" translatable="false">Prihlasit sa</string>
+    <string name="nacitaj_profil" translatable="false">Nacitaj profil</string>
+    <string name="odhlasit_sa" translatable="false">Odhlasit sa</string>
 </resources>

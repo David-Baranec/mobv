@@ -6,7 +6,8 @@ data class User(
     val email: String,
     val id: String,
     val access: String,
-    val refresh: String
+    val refresh: String,
+    val photo: String = ""
 ) {
 
     fun toJson(): String? {
