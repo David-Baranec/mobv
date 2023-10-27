@@ -4,6 +4,8 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import com.example.cvicenie2.data.api.DataRepository
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cvicenie2.BottomBar
 import com.example.cvicenie2.viewmodels.FeedViewModel
@@ -18,7 +20,11 @@ class FeedFragment : Fragment(R.layout.fragment_feed) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[FeedViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return FeedViewModel(DataRepository.getInstance(requireContext())) as T
+            }
+        })[FeedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,11 +42,14 @@ class FeedFragment : Fragment(R.layout.fragment_feed) {
             // Pozorovanie zmeny hodnoty
             viewModel.feed_items.observe(viewLifecycleOwner) { items ->
                 Log.d("FeedFragment", "nove hodnoty $items")
-                feedAdapter.updateItems(items)
+                feedAdapter.updateItems(items ?: emptyList())
             }
 
-            bnd.btnGenerate.setOnClickListener {
+            bnd.pullRefresh.setOnRefreshListener {
                 viewModel.updateItems()
+            }
+            viewModel.loading.observe(viewLifecycleOwner) {
+                bnd.pullRefresh.isRefreshing = it
             }
         }
 

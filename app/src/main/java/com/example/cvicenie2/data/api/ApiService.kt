@@ -5,6 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.example.cvicenie2.config.AppConfig
 import com.example.cvicenie2.data.api.helper.AuthInterceptor
 import com.example.cvicenie2.data.api.helper.TokenAuthenticator
+import com.example.cvicenie2.data.api.model.GeofenceListResponse
 import com.example.cvicenie2.data.api.model.LoginResponse
 import com.example.cvicenie2.data.api.model.RefreshTokenRequest
 import com.example.cvicenie2.data.api.model.RefreshTokenResponse
@@ -38,7 +39,8 @@ interface ApiService {
     suspend fun refreshToken(
         @Body refreshInfo: RefreshTokenRequest
     ): Response<RefreshTokenResponse>
-
+    @GET("geofence/list.php")
+    suspend fun listGeofence(): Response<List<GeofenceListResponse>>
     @POST("user/refresh.php")
     fun refreshTokenBlocking(
         @Body refreshInfo: RefreshTokenRequest
