@@ -19,7 +19,7 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return AuthViewModel(DataRepository.getInstance()) as T
+                return AuthViewModel(DataRepository.getInstance(requireContext())) as T
             }
         })[AuthViewModel::class.java]
     }
