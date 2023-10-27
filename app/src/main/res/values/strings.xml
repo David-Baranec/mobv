@@ -6,7 +6,6 @@
     <string name="map" translatable="false">Map</string>
     <string name="feed" translatable="false">Feed</string>
     <string name="profile" translatable="false">Profile</string>
-    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoieGJhcmFuZWNkIiwiYSI6ImNsbm13MWozejAwOTAydnBmZnZrcWl2eTMifQ.EJhgjDiQTbbtYbPLYw_5BQ</string>
     <string name="email" translatable="false">Email:</string>
     <string name="zadajte_email" translatable="false">Zadajte email</string>
     <string name="username" translatable="false">Username:</string>

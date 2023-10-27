@@ -57,4 +57,5 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-moshi:2.5.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation("com.google.android.gms:play-services-location:18.0.0")
 }
