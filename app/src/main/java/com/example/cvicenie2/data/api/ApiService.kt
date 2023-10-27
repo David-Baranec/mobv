@@ -8,7 +8,7 @@ import com.example.cvicenie2.data.api.model.UserRegistrationRequest
 import com.example.cvicenie2.data.api.model.UserLoginRequest
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -30,7 +30,7 @@ interface ApiService {
 
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://zadanie.mpage.sk/")
-                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
             return retrofit.create(ApiService::class.java)

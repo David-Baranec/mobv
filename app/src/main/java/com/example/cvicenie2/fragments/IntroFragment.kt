@@ -27,6 +27,11 @@ class IntroFragment : Fragment(R.layout.fragment_intro) {
                 }
             }
         }
+
+        val user = PreferenceData.getInstance().getUser(requireContext())
+        if (user != null) {
+            requireView().findNavController().navigate(R.id.action_intro_feed)
+        }
     }
 
     override fun onDestroyView() {

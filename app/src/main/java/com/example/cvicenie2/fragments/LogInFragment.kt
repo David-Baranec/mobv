@@ -31,15 +31,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             model = viewModel
         }.also { bnd ->
             viewModel.loginResult.observe(viewLifecycleOwner) {
-                if (it.isEmpty()) {
-                    requireView().findNavController().navigate(R.id.action_login_feed)
-                } else {
+                if (it.isNotEmpty()) {
                     Snackbar.make(
                         bnd.submitButton,
                         it,
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
+            }
+            viewModel.userResult.observe(viewLifecycleOwner) {
+                it?.let { user ->
+                    PreferenceData.getInstance().putUser(requireContext(), user)
+                    requireView().findNavController().navigate(R.id.action_login_feed)
+                } ?: PreferenceData.getInstance().putUser(requireContext(), null)
             }
         }
     }

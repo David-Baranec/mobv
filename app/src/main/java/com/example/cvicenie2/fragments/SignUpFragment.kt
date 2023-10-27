@@ -31,15 +31,20 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
             model = viewModel
         }.also { bnd ->
             viewModel.registrationResult.observe(viewLifecycleOwner) {
-                if (it.isEmpty()) {
-                    requireView().findNavController().navigate(R.id.action_signup_feed)
-                } else {
+                if (it.isNotEmpty()) {
                     Snackbar.make(
                         bnd.submitButton,
                         it,
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
+            }
+
+            viewModel.userResult.observe(viewLifecycleOwner) {
+                it?.let { user ->
+                    PreferenceData.getInstance().putUser(requireContext(), user)
+                    requireView().findNavController().navigate(R.id.action_signup_feed)
+                } ?: PreferenceData.getInstance().putUser(requireContext(), null)
             }
         }
     }
