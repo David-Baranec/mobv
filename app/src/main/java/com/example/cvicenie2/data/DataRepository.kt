@@ -6,8 +6,10 @@ import com.example.cvicenie2.data.api.model.UserLoginRequest
 import java.io.IOException
 import android.content.Context
 import com.example.cvicenie2.data.api.ApiService
+import com.example.cvicenie2.data.api.model.GeofenceUpdateRequest
 import com.example.cvicenie2.data.db.AppRoomDatabase
 import com.example.cvicenie2.data.db.LocalCache
+import com.example.cvicenie2.data.db.entities.GeofenceEntity
 import com.example.cvicenie2.data.db.entities.UserEntity
 class DataRepository private constructor(
     private val service: ApiService,
@@ -159,4 +161,46 @@ class DataRepository private constructor(
 
     fun getUsers() = cache.getUsers()
 
+    suspend fun insertGeofence(item: GeofenceEntity) {
+        cache.insertGeofence(item)
+        try {
+            val response =
+                service.updateGeofence(GeofenceUpdateRequest(item.lat, item.lon, item.radius))
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+
+                    item.uploaded = true
+                    cache.insertGeofence(item)
+                    return
+                }
+            }
+
+            return
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
+
+    suspend fun removeGeofence() {
+        try {
+            val response = service.deleteGeofence()
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return
+                }
+            }
+
+            return
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
 }

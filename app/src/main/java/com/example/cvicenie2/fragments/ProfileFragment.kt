@@ -28,10 +28,13 @@ import com.example.cvicenie2.broadcastReceivers.GeofenceBroadcastReceiver
 import com.example.cvicenie2.data.DataRepository
 import com.example.cvicenie2.viewmodels.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
+
+
+
+
 class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var binding: FragmentProfileBinding
-
     private val PERMISSIONS_REQUIRED = when {
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
             arrayOf(
@@ -40,7 +43,6 @@ class ProfileFragment : Fragment() {
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION
             )
         }
-
         else -> {
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -51,11 +53,10 @@ class ProfileFragment : Fragment() {
 
     val requestPermissionLauncher =
         registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
+            ActivityResultContracts.RequestPermission()
         ) {
 
         }
-
     fun hasPermissions(context: Context) = PERMISSIONS_REQUIRED.all {
         ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
     }
@@ -100,7 +101,6 @@ class ProfileFragment : Fragment() {
                     ).show()
                 }
             }
-
             bnd.locationSwitch.isChecked = PreferenceData.getInstance().getSharing(requireContext())
             bnd.locationSwitch.setOnCheckedChangeListener { _, checked ->
                 Log.d("ProfileFragment", "sharing je $checked")
@@ -112,23 +112,30 @@ class ProfileFragment : Fragment() {
             }
         }
     }
-
     @SuppressLint("MissingPermission")
     private fun turnOnSharing() {
         Log.d("ProfileFragment", "turnOnSharing")
         if (!hasPermissions(requireContext())) {
             binding.locationSwitch.isChecked = false
-            requestPermissionLauncher.launch(PERMISSIONS_REQUIRED)
+            for (p in PERMISSIONS_REQUIRED) {
+                requestPermissionLauncher.launch(p)
+            }
             return
         }
         PreferenceData.getInstance().putSharing(requireContext(), true)
 
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) {
             // Logika pre prácu s poslednou polohou
-            Log.d("ProfileFragment", "poloha posledna $it")
-            setupGeofence(it)
+            Log.d("ProfileFragment", "poloha posledna ${it ?: "-"}")
+            if (it == null) {
+                Log.e("ProfileFragment", "poloha neznama geofence nevytvoreny")
+            } else {
+                setupGeofence(it)
+            }
         }
+
     }
 
     private fun turnOffSharing() {
@@ -136,37 +143,33 @@ class ProfileFragment : Fragment() {
         PreferenceData.getInstance().putSharing(requireContext(), false)
         removeGeofence()
     }
-
     @SuppressLint("MissingPermission")
     private fun setupGeofence(location: Location) {
-
         val geofencingClient = LocationServices.getGeofencingClient(requireActivity())
-
         val geofence = Geofence.Builder()
             .setRequestId("my-geofence")
             .setCircularRegion(location.latitude, location.longitude, 100f) // 100m polomer
             .setExpirationDuration(Geofence.NEVER_EXPIRE)
             .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_EXIT)
             .build()
-
         val geofencingRequest = GeofencingRequest.Builder()
             .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
             .addGeofence(geofence)
             .build()
 
-        val intent = Intent(requireContext(), GeofenceBroadcastReceiver::class.java)
+        val intent = Intent(requireActivity(), GeofenceBroadcastReceiver::class.java)
         val geofencePendingIntent =
             PendingIntent.getBroadcast(
-                requireContext(),
+                requireActivity(),
                 0,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT
             )
-
         geofencingClient.addGeofences(geofencingRequest, geofencePendingIntent).run {
             addOnSuccessListener {
                 // Geofences boli úspešne pridané
                 Log.d("ProfileFragment", "geofence vytvoreny")
+                viewModel.updateGeofence(location.latitude, location.longitude, 100.0)
             }
             addOnFailureListener {
                 // Chyba pri pridaní geofences
@@ -175,12 +178,13 @@ class ProfileFragment : Fragment() {
                 PreferenceData.getInstance().putSharing(requireContext(), false)
             }
         }
-
     }
 
     private fun removeGeofence() {
+        Log.d("ProfileFragment", "geofence zruseny")
         val geofencingClient = LocationServices.getGeofencingClient(requireActivity())
         geofencingClient.removeGeofences(listOf("my-geofence"))
+        viewModel.removeGeofence()
 
     }
 }

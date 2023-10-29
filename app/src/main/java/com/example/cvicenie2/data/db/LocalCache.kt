@@ -2,6 +2,7 @@ package com.example.cvicenie2.data.db
 
 import androidx.lifecycle.LiveData
 import com.example.cvicenie2.data.db.DbDao
+import com.example.cvicenie2.data.db.entities.GeofenceEntity
 import com.example.cvicenie2.data.db.entities.UserEntity
 
 class LocalCache(private val dao: DbDao) {
@@ -23,5 +24,7 @@ class LocalCache(private val dao: DbDao) {
     suspend fun deleteUserItems() {
         dao.deleteUserItems()
     }
-
+    suspend fun insertGeofence(item: GeofenceEntity) {
+        dao.insertGeofence(item)
+    }
 }

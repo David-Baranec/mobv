@@ -5,11 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.cvicenie2.data.db.entities.GeofenceEntity
 import com.example.cvicenie2.data.db.entities.UserEntity
 
 @Dao
 interface DbDao {
-
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertGeofence(item: GeofenceEntity)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUserItems(items: List<UserEntity>)
 

@@ -6,6 +6,8 @@ import com.example.cvicenie2.config.AppConfig
 import com.example.cvicenie2.data.api.helper.AuthInterceptor
 import com.example.cvicenie2.data.api.helper.TokenAuthenticator
 import com.example.cvicenie2.data.api.model.GeofenceListResponse
+import com.example.cvicenie2.data.api.model.GeofenceUpdateRequest
+import com.example.cvicenie2.data.api.model.GeofenceUpdateResponse
 import com.example.cvicenie2.data.api.model.LoginResponse
 import com.example.cvicenie2.data.api.model.RefreshTokenRequest
 import com.example.cvicenie2.data.api.model.RefreshTokenResponse
@@ -22,6 +24,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import okhttp3.OkHttpClient
 import retrofit2.Call
+import retrofit2.http.DELETE
 
 interface ApiService {
     @POST("user/create.php")
@@ -41,6 +44,11 @@ interface ApiService {
     ): Response<RefreshTokenResponse>
     @GET("geofence/list.php")
     suspend fun listGeofence(): Response<List<GeofenceListResponse>>
+    @POST("geofence/update.php")
+    suspend fun updateGeofence(@Body body: GeofenceUpdateRequest): Response<GeofenceUpdateResponse>
+
+    @DELETE("geofence/update.php")
+    suspend fun deleteGeofence(): Response<GeofenceUpdateResponse>
     @POST("user/refresh.php")
     fun refreshTokenBlocking(
         @Body refreshInfo: RefreshTokenRequest
