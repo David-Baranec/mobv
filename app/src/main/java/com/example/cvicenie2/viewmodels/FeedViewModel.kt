@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.example.cvicenie2.data.api.DataRepository
+import com.example.cvicenie2.data.DataRepository
 import com.example.cvicenie2.data.db.entities.UserEntity
 import com.example.cvicenie2.utils.Evento
 import kotlinx.coroutines.launch

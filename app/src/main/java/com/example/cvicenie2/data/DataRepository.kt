@@ -1,10 +1,11 @@
-package com.example.cvicenie2.data.api
+package com.example.cvicenie2.data
 
 import com.example.cvicenie2.data.model.User
 import com.example.cvicenie2.data.api.model.UserRegistrationRequest
 import com.example.cvicenie2.data.api.model.UserLoginRequest
 import java.io.IOException
 import android.content.Context
+import com.example.cvicenie2.data.api.ApiService
 import com.example.cvicenie2.data.db.AppRoomDatabase
 import com.example.cvicenie2.data.db.LocalCache
 import com.example.cvicenie2.data.db.entities.UserEntity

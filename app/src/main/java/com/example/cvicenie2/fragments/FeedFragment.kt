@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModel
-import com.example.cvicenie2.data.api.DataRepository
+import com.example.cvicenie2.data.DataRepository
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cvicenie2.BottomBar
 import com.example.cvicenie2.viewmodels.FeedViewModel

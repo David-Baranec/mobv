@@ -13,7 +13,7 @@ import com.example.cvicenie2.databinding.FragmentProfileBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.cvicenie2.data.api.DataRepository
+import com.example.cvicenie2.data.DataRepository
 import com.example.cvicenie2.viewmodels.ProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 class ProfileFragment : Fragment(R.layout.fragment_profile) {

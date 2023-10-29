@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.example.cvicenie2.R
-import com.example.cvicenie2.data.api.DataRepository
+import com.example.cvicenie2.data.DataRepository
 import com.example.cvicenie2.databinding.FragmentLoginBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
 
