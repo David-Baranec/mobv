@@ -1,7 +1,9 @@
 package com.example.cvicenie2.fragments
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModel
@@ -13,25 +15,33 @@ import com.example.cvicenie2.R
 import com.example.cvicenie2.adapters.FeedAdapter
 import com.example.cvicenie2.databinding.FragmentFeedBinding
 
-class FeedFragment : Fragment(R.layout.fragment_feed) {
+class FeedFragment : Fragment()  {
     private lateinit var viewModel: FeedViewModel
-    private var binding: FragmentFeedBinding? = null
+    private lateinit var binding: FragmentFeedBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 return FeedViewModel(DataRepository.getInstance(requireContext())) as T
             }
         })[FeedViewModel::class.java]
+
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentFeedBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentFeedBinding.bind(view).apply {
+        binding.apply {
             lifecycleOwner = viewLifecycleOwner
+            model = viewModel
         }.also { bnd ->
             bnd.bottomBar.setActive(BottomBar.FEED)
 

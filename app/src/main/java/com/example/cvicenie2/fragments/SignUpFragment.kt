@@ -2,6 +2,8 @@ package com.example.cvicenie2.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -12,9 +14,9 @@ import com.example.cvicenie2.databinding.FragmentSignupBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class SignUpFragment : Fragment(R.layout.fragment_signup) {
+class SignupFragment : Fragment() {
     private lateinit var viewModel: AuthViewModel
-    private var binding: FragmentSignupBinding? = null
+    private lateinit var binding: FragmentSignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
@@ -23,10 +25,18 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
             }
         })[AuthViewModel::class.java]
     }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentSignupBinding.inflate(inflater, container, false)
+        return binding.root
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentSignupBinding.bind(view).apply {
+
+        binding.apply {
             lifecycleOwner = viewLifecycleOwner
             model = viewModel
         }.also { bnd ->
