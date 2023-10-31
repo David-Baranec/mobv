@@ -7,39 +7,47 @@
             name="model"
             type="com.example.cvicenie2.viewmodels.ProfileViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profile"
+            android:layout_width="68dp"
+            android:layout_height="51dp"
             android:layout_margin="@dimen/activity_vertical_margin"
-            app:layout_constraintTop_toTopOf="@id/load_profile_btn"
+            android:layout_marginStart="16dp"
+            android:text="@string/profile"
             app:layout_constraintBottom_toBottomOf="@id/load_profile_btn"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/load_profile_btn"
+            app:layout_constraintVertical_bias="0.0" />
+
         <TextView
             android:id="@+id/name"
-            android:text="@{model.userResult.username}"
-            app:layout_constraintTop_toBottomOf="@id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/load_profile_btn"
-            android:text="@string/nacitaj_profil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="@{model.userResult.username}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
+
+        <Button
+            android:id="@+id/load_profile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/nacitaj_profil"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/activity_horizontal_margin" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/location_label"
-            android:layout_width="124dp"
-            android:layout_height="27dp"
+            android:layout_width="153dp"
+            android:layout_height="63dp"
             android:layout_marginStart="16dp"
             android:text="Share my location"
             app:layout_constraintBottom_toBottomOf="@id/location_switch"
@@ -58,22 +66,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name" />
 
+
         <Button
             android:id="@+id/logout_btn"
-            android:text="@string/odhlasit_sa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/odhlasit_sa"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/location_label"
-            android:layout_margin="@dimen/activity_horizontal_margin" />
-
+            app:layout_constraintTop_toBottomOf="@id/location_label" />
 
         <com.example.cvicenie2.BottomBar
+            style="@style/AppTheme"
             android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
