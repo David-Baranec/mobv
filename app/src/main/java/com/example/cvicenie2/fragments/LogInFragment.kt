@@ -14,7 +14,7 @@ import com.example.cvicenie2.data.DataRepository
 import com.example.cvicenie2.databinding.FragmentLoginBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
 
-class LoginFragment : Fragment() {
+class LogInFragment : Fragment() {
     private lateinit var viewModel: AuthViewModel
     private lateinit var binding: FragmentLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {

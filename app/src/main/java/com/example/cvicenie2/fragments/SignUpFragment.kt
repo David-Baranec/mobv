@@ -14,7 +14,7 @@ import com.example.cvicenie2.databinding.FragmentSignupBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class SignupFragment : Fragment() {
+class SignUpFragment : Fragment() {
     private lateinit var viewModel: AuthViewModel
     private lateinit var binding: FragmentSignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {

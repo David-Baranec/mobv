@@ -2,7 +2,6 @@ package com.example.cvicenie2.data.api
 import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.example.cvicenie2.config.AppConfig
 import com.example.cvicenie2.data.api.helper.AuthInterceptor
 import com.example.cvicenie2.data.api.helper.TokenAuthenticator
 import com.example.cvicenie2.data.api.model.GeofenceListResponse
