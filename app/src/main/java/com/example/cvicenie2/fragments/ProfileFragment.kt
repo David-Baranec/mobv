@@ -43,7 +43,16 @@ class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
     private lateinit var binding: FragmentProfileBinding
     private val PERMISSIONS_REQUIRED = when {
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+        Build.VERSION.SDK_INT >= 33 -> { // android 13
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                Manifest.permission.POST_NOTIFICATIONS
+            )
+        }
+
+        Build.VERSION.SDK_INT >= 29 -> { // android 10
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
