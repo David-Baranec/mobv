@@ -140,8 +140,7 @@ class DataRepository private constructor(
                 response.body()?.list?.let {
                     val users = it.map {
                         UserEntity(
-                            it.uid, it.name, it.updated,
-                            0.0, 0.0, it.radius, it.photo
+                            it.uid, it.name, it.updated, response.body()!!.me.lat, response.body()!!.me.lon, it.radius, it.photo
                         )
                     }
                     cache.insertUserItems(users)

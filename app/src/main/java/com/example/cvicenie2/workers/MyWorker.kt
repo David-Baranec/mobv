@@ -30,7 +30,11 @@ class MyWorker(appContext: Context, workerParams: WorkerParameters) :
         val users = DataRepository.getInstance(context).getUsersList() ?: emptyList()
 
         val name = "MOBV Zadanie"
-        val descriptionText = "V okolí je ${users.size} používateľov"
+        var descriptionText = ""
+        if (users.size>1)
+            descriptionText = "V okolí je ${users.size} používateľov"
+        else
+            descriptionText = "V okolí je ${users.size} používateľ"
         val text = users.joinToString { it.name }
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel_id = "kanal-1"
