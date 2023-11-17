@@ -61,7 +61,7 @@ class GeofenceBroadcastReceiver : BroadcastReceiver() {
 
         val geofence = Geofence.Builder()
             .setRequestId("my-geofence")
-            .setCircularRegion(location.latitude, location.longitude, 100f) // 100m polomer
+            .setCircularRegion(location.latitude, location.longitude, 150f) // 150m polomer
             .setExpirationDuration(Geofence.NEVER_EXPIRE)
             .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_EXIT)
             .build()
@@ -92,7 +92,7 @@ class GeofenceBroadcastReceiver : BroadcastReceiver() {
                             GeofenceEntity(
                                 location.latitude,
                                 location.longitude,
-                                100.0
+                                150.0
                             )
                         )
                     } catch (e: Exception) {

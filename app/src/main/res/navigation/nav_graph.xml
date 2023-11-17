@@ -68,7 +68,7 @@
         android:label="ResetPasswordFragment" />
     <fragment
         android:id="@+id/emailFragment"
-        android:name="com.example.cvicenie2.EmailFragment"
+        android:name="com.example.cvicenie2.fragments.EmailFragment"
         android:label="emailFragment" />
     <action
         android:id="@+id/action_to_email"

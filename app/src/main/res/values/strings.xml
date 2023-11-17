@@ -15,6 +15,9 @@
     <string name="zopakujte_heslo" translatable="false">Zopakujte heslo</string>
     <string name="registruj_sa" translatable="false">Registruj sa</string>
     <string name="prihlasit_sa" translatable="false">Prihlasit sa</string>
+    <string name="zabudnute_heslo" translatable="false">Zabudnuté heslo</string>
     <string name="nacitaj_profil" translatable="false">Nacitaj profil</string>
     <string name="odhlasit_sa" translatable="false">Odhlasit sa</string>
+    <string name="odoslat" translatable="false">Odoslat</string>
+
 </resources>

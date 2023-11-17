@@ -38,8 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="216dp"
+            android:layout_marginEnd="56dp"
             android:text="@string/nacitaj_profil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -72,11 +72,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="256dp"
+            android:layout_marginTop="204dp"
             android:text="@string/odhlasit_sa"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/location_label" />
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="333dp"
+            android:layout_height="361dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.969"
+            app:mapbox_cameraTargetLat="40.7128"
+            app:mapbox_cameraTargetLng="-74.0060"
+            app:mapbox_cameraZoom="9.0" />
+
+        <ImageView
+            android:id="@+id/my_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:paddingStart="10dp"
+            android:src="@drawable/ic_baseline_my_location_24"
+            app:layout_constraintStart_toStartOf="@id/mapView"
+            app:layout_constraintTop_toTopOf="@id/mapView" />
 
         <com.example.cvicenie2.BottomBar
             style="@style/AppTheme"

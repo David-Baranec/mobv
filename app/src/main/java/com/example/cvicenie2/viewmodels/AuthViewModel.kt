@@ -40,4 +40,7 @@ class AuthViewModel(private val dataRepository: DataRepository) : ViewModel() {
             _userResult.postValue(result.second)
         }
     }
+    fun resetPassword() {
+
+    }
 }
