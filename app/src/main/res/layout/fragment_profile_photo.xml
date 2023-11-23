@@ -42,16 +42,18 @@
             android:layout_height="300dp"
             android:layout_below="@id/BSelectImage"
             android:layout_marginTop="30dp"
+            app:imageUrl="@{model.imageFile}"
             app:layout_constraintTop_toBottomOf="@id/BSelectImage"/>
 
         <Button
             android:id="@+id/submit_button"
-            android:layout_width="143dp"
-            android:layout_height="43dp"
+            android:layout_width="149dp"
+            android:layout_height="53dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:onClick="@{() -> model.uploadPhoto(model.imageFile)}"
             android:text="Odoslat"
             android:textSize="18sp"
-            android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="@id/textView"
             app:layout_constraintTop_toBottomOf="@id/IVPreviewImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>

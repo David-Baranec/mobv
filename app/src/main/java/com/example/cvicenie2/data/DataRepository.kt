@@ -9,11 +9,18 @@ import android.util.Log
 import com.example.cvicenie2.data.api.ApiService
 import com.example.cvicenie2.data.api.model.ChangePasswordRequest
 import com.example.cvicenie2.data.api.model.GeofenceUpdateRequest
+import com.example.cvicenie2.data.api.model.PhotoResponse
 import com.example.cvicenie2.data.api.model.ResetPasswordRequest
 import com.example.cvicenie2.data.db.AppRoomDatabase
 import com.example.cvicenie2.data.db.LocalCache
 import com.example.cvicenie2.data.db.entities.GeofenceEntity
 import com.example.cvicenie2.data.db.entities.UserEntity
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+import kotlin.coroutines.coroutineContext
+
 class DataRepository private constructor(
     private val service: ApiService,
     private val cache: LocalCache
@@ -34,7 +41,49 @@ class DataRepository private constructor(
                     ).also { INSTANCE = it }
             }
     }
+    suspend fun uploadImage(imageFile: File): Pair<String, PhotoResponse?> {
+        try {
+            val requestFile = RequestBody.create("image/jpg".toMediaTypeOrNull(), imageFile)
+            val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
 
+            val response = service.uploadImage(imagePart)
+            Log.d("DataRepository", response.code().toString())
+
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return Pair("Image uploaded successfully", it)
+                }
+            }
+
+            return Pair("Failed to upload image", null)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return Pair("Check internet connection. Failed to upload image.", null)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+
+        return Pair("Fatal error. Failed to upload image.", null)
+    }
+    suspend fun resetPassword(email: String):Pair<String, String?> {
+        try {
+            val response = service.resetPassword(ResetPasswordRequest(email));
+            Log.d("DataRepository", response.code().toString())
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return Pair(it.status, it.message)
+                }
+            }
+
+            return Pair("Failed to reset password", null)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return Pair("Check internet connection. Failed to reset password.",null)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+        return Pair("Fatal error. Failed to load users.",null)
+    }
     suspend fun apiRegisterUser(
         username: String,
         email: String,
@@ -163,25 +212,7 @@ class DataRepository private constructor(
         }
         return Pair("Fatal error. Failed to load user.", null)
     }
-    suspend fun resetPassword(email: String):Pair<String, String?> {
-        try {
-            val response = service.resetPassword(ResetPasswordRequest(email));
-            Log.d("DataRepository", response.code().toString())
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    return Pair(it.status, it.message)
-                }
-            }
 
-            return Pair("Failed to reset password", null)
-        } catch (ex: IOException) {
-            ex.printStackTrace()
-            return Pair("Check internet connection. Failed to reset password.",null)
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-        }
-        return Pair("Fatal error. Failed to load users.",null)
-    }
     suspend fun apiListGeofence(): String {
         try {
             val response = service.listGeofence()

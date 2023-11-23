@@ -35,7 +35,6 @@
         android:id="@+id/signupFragment"
         android:name="com.example.cvicenie2.fragments.SignUpFragment"
         android:label="SignupFragment">
-
         <action
             android:id="@+id/action_signup_feed"
             app:popUpToInclusive="true"
@@ -44,7 +43,12 @@
     <fragment
         android:id="@+id/photoFragment"
         android:name="com.example.cvicenie2.fragments.PhotoFragment"
-        android:label="PhotoFragment" />
+        android:label="PhotoFragment">
+        <action
+            android:id="@+id/action_photo_profile"
+            app:popUpToInclusive="true"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.example.cvicenie2.fragments.FeedFragment"

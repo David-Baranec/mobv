@@ -10,6 +10,7 @@ import com.example.cvicenie2.data.api.model.GeofenceListResponse
 import com.example.cvicenie2.data.api.model.GeofenceUpdateRequest
 import com.example.cvicenie2.data.api.model.GeofenceUpdateResponse
 import com.example.cvicenie2.data.api.model.LoginResponse
+import com.example.cvicenie2.data.api.model.PhotoResponse
 import com.example.cvicenie2.data.api.model.RefreshTokenRequest
 import com.example.cvicenie2.data.api.model.RefreshTokenResponse
 import com.example.cvicenie2.data.api.model.RegistrationResponse
@@ -18,6 +19,7 @@ import com.example.cvicenie2.data.api.model.ResetPasswordResponse
 import com.example.cvicenie2.data.api.model.UserRegistrationRequest
 import com.example.cvicenie2.data.api.model.UserLoginRequest
 import com.example.cvicenie2.data.api.model.UserResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,6 +30,8 @@ import retrofit2.http.Query
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.http.DELETE
+import retrofit2.http.Multipart
+import retrofit2.http.Part
 
 interface ApiService {
     @POST("user/create.php")
@@ -61,6 +65,11 @@ interface ApiService {
     fun refreshTokenBlocking(
         @Body refreshInfo: RefreshTokenRequest
     ): Call<RefreshTokenResponse>
+    @Multipart
+    @POST("user/photo.php")
+    suspend fun uploadImage(
+        @Part("image\"; filename=\"photo.jpg\"") file: MultipartBody.Part
+    ): Response<PhotoResponse>
     companion object {
         fun create(context: Context): ApiService {
 
@@ -74,6 +83,25 @@ interface ApiService {
 
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://zadanie.mpage.sk/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            return retrofit.create(ApiService::class.java)
+        }
+        fun createForImageUpload(context: Context): ApiService {
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(AuthInterceptor(context))
+                .authenticator(TokenAuthenticator(context))
+                .build()
+
+            val moshi = Moshi.Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://upload.mcomputing.eu/")  // Base URL for image upload
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
