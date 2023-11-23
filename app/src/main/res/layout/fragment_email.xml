@@ -39,6 +39,7 @@
             android:layout_height="79dp"
             android:layout_marginTop="8dp"
             android:hint="Enter email"
+            android:text="@={model.email}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.636"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +52,8 @@
             android:layout_marginEnd="160dp"
             android:layout_marginBottom="284dp"
             android:text="@string/odoslat"
+            android:onClick="@{()->model.resetPassword()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+       </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

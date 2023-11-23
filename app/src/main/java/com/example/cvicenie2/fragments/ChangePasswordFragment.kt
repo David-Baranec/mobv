@@ -1,24 +1,23 @@
 package com.example.cvicenie2.fragments
 
-import PreferenceData
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.cvicenie2.R
 import com.example.cvicenie2.data.DataRepository
-import com.example.cvicenie2.databinding.FragmentEmailBinding
+import com.example.cvicenie2.databinding.FragmentPasswordBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
 
-class EmailFragment : Fragment() {
+class ChangePasswordFragment : Fragment() {
     private lateinit var viewModel: AuthViewModel
-    private lateinit var binding: FragmentEmailBinding
+    private lateinit var binding: FragmentPasswordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
@@ -31,7 +30,7 @@ class EmailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEmailBinding.inflate(inflater, container, false)
+        binding = FragmentPasswordBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,10 +40,16 @@ class EmailFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             model = viewModel
         }.also { bnd ->
-            viewModel.resetStatus.observe(viewLifecycleOwner) {
+            viewModel.passwordResult.observe(viewLifecycleOwner) {
+
                 if (it.equals("success")) {
-                    requireView().findNavController().navigate(R.id.action_email_intro)
-                }
+                    Log.d("ChangePasswordFragment", "success")
+                    //PreferenceData.getInstance().clearData(requireContext())
+                    findNavController().navigate(R.id.action_password_feed)
+
+                }else
+                    Log.d("ChangePasswordFragment", "failure")
+
             }
 
         }
@@ -52,3 +57,5 @@ class EmailFragment : Fragment() {
 
 
 }
+
+

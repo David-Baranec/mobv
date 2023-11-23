@@ -19,5 +19,7 @@
     <string name="nacitaj_profil" translatable="false">Nacitaj profil</string>
     <string name="odhlasit_sa" translatable="false">Odhlasit sa</string>
     <string name="odoslat" translatable="false">Odoslat</string>
+    <string name="change_password">zmenit heslo</string>
+
 
 </resources>

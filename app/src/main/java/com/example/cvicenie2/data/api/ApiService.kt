@@ -4,6 +4,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.example.cvicenie2.data.api.helper.AuthInterceptor
 import com.example.cvicenie2.data.api.helper.TokenAuthenticator
+import com.example.cvicenie2.data.api.model.ChangePasswordRequest
+import com.example.cvicenie2.data.api.model.ChangePasswordResponse
 import com.example.cvicenie2.data.api.model.GeofenceListResponse
 import com.example.cvicenie2.data.api.model.GeofenceUpdateRequest
 import com.example.cvicenie2.data.api.model.GeofenceUpdateResponse
@@ -11,6 +13,8 @@ import com.example.cvicenie2.data.api.model.LoginResponse
 import com.example.cvicenie2.data.api.model.RefreshTokenRequest
 import com.example.cvicenie2.data.api.model.RefreshTokenResponse
 import com.example.cvicenie2.data.api.model.RegistrationResponse
+import com.example.cvicenie2.data.api.model.ResetPasswordRequest
+import com.example.cvicenie2.data.api.model.ResetPasswordResponse
 import com.example.cvicenie2.data.api.model.UserRegistrationRequest
 import com.example.cvicenie2.data.api.model.UserLoginRequest
 import com.example.cvicenie2.data.api.model.UserResponse
@@ -31,6 +35,11 @@ interface ApiService {
 
     @POST("user/login.php")
     suspend fun loginUser(@Body userInfo: UserLoginRequest): Response<LoginResponse>
+
+    @POST("user/password.php")
+    suspend fun changePassword(@Body passwordInfo: ChangePasswordRequest): Response<ChangePasswordResponse>
+    @POST("user/reset.php")
+    suspend fun resetPassword(@Body passwordInfo: ResetPasswordRequest): Response<ResetPasswordResponse>
 
     @GET("user/get.php")
     suspend fun getUser(

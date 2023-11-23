@@ -46,8 +46,8 @@
 
         <TextView
             android:id="@+id/location_label"
-            android:layout_width="153dp"
-            android:layout_height="63dp"
+            android:layout_width="147dp"
+            android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:text="Share my location"
             app:layout_constraintBottom_toBottomOf="@id/location_switch"
@@ -62,26 +62,37 @@
             android:layout_height="68dp"
             android:layout_margin="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name" />
-
 
         <Button
             android:id="@+id/logout_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="256dp"
-            android:layout_marginTop="204dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:text="@string/odhlasit_sa"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/location_label" />
 
+        <Button
+            android:id="@+id/changePasswordBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/change_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logout_btn" />
+
+
         <com.mapbox.maps.MapView
             android:id="@+id/mapView"
-            android:layout_width="333dp"
-            android:layout_height="361dp"
+            android:layout_width="329dp"
+            android:layout_height="290dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

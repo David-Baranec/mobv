@@ -1,8 +1,12 @@
 package com.example.cvicenie2.data.api.model
 
+import java.sql.ClientInfoStatus
+
 data class RegistrationResponse(val uid: String, val access: String, val refresh: String)
 
 data class LoginResponse(val uid: String, val access: String, val refresh: String)
+data class ResetPasswordResponse(val status: String, val message: String)
+data class ChangePasswordResponse(val status: String)
 
 data class UserResponse(val id: String, val name: String, val photo: String)
 

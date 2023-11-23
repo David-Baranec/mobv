@@ -26,11 +26,6 @@ class IntroFragment : Fragment(R.layout.fragment_intro) {
                     it.findNavController().navigate(R.id.action_intro_signup)
                 }
             }
-            bnd.resetPassword.apply {
-                setOnClickListener {
-                    it.findNavController().navigate(R.id.action_to_email)
-                }
-            }
         }
 
         val user = PreferenceData.getInstance().getUser(requireContext())

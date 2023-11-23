@@ -34,15 +34,16 @@
             android:text="@string/username"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_title" />
+
         <EditText
             android:id="@+id/edit_text_username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="372dp"
+            android:layout_height="88dp"
             android:hint="@string/zadajte_username"
             android:text="@={model.username}"
-            app:layout_constraintTop_toBottomOf="@+id/label_username"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/label_username" />
         <TextView
             android:id="@+id/label_password"
             android:layout_width="wrap_content"
@@ -50,15 +51,16 @@
             android:text="@string/heslo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_username" />
+
         <EditText
             android:id="@+id/edit_text_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="370dp"
+            android:layout_height="83dp"
             android:hint="@string/zadajte_heslo"
             android:text="@={model.password}"
-            app:layout_constraintTop_toBottomOf="@+id/label_password"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/label_password" />
         <Button
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
@@ -68,6 +70,17 @@
             android:text="@string/prihlasit_sa"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/reset_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="reset hesla"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

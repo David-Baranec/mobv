@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.example.cvicenie2.R
 import com.example.cvicenie2.data.DataRepository
+import com.example.cvicenie2.databinding.FragmentIntroBinding
 import com.example.cvicenie2.databinding.FragmentLoginBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
 
@@ -39,6 +40,11 @@ class LogInFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             model = viewModel
         }.also { bnd ->
+            bnd.resetButton.apply {
+                setOnClickListener {
+                    it.findNavController().navigate(R.id.action_intro_email)
+                }
+            }
             viewModel.loginResult.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     Snackbar.make(
@@ -55,5 +61,6 @@ class LogInFragment : Fragment() {
                 } ?: PreferenceData.getInstance().putUser(requireContext(), null)
             }
         }
+
     }
 }

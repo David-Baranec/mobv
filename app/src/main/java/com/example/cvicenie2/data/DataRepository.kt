@@ -5,8 +5,11 @@ import com.example.cvicenie2.data.api.model.UserRegistrationRequest
 import com.example.cvicenie2.data.api.model.UserLoginRequest
 import java.io.IOException
 import android.content.Context
+import android.util.Log
 import com.example.cvicenie2.data.api.ApiService
+import com.example.cvicenie2.data.api.model.ChangePasswordRequest
 import com.example.cvicenie2.data.api.model.GeofenceUpdateRequest
+import com.example.cvicenie2.data.api.model.ResetPasswordRequest
 import com.example.cvicenie2.data.db.AppRoomDatabase
 import com.example.cvicenie2.data.db.LocalCache
 import com.example.cvicenie2.data.db.entities.GeofenceEntity
@@ -72,6 +75,7 @@ class DataRepository private constructor(
         return Pair("Fatal error. Failed to create user.", null)
     }
 
+
     suspend fun apiLoginUser(
         username: String,
         password: String
@@ -110,7 +114,34 @@ class DataRepository private constructor(
         }
         return Pair("Fatal error. Failed to login user.", null)
     }
+    suspend fun changePassword(
+        oldPassword: String,
+        newPassword: String): String {
+            if (oldPassword.isEmpty()) {
+                return "Old password can not be empty"
+            }
+            if (newPassword.isEmpty()) {
+                return "New password can not be empty"
+            }
+            try{
+                val response = service.changePassword(ChangePasswordRequest(oldPassword,newPassword))
+                Log.d("DataRepository", response.toString())
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        return it.status
+                    }
+                }
 
+                return "Failed to change password"
+            }catch (ex: IOException) {
+                ex.printStackTrace()
+                return "Check internet connection. Failed to change password."
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
+        return "Fatal error. Failed to change password."
+
+    }
     suspend fun apiGetUser(
         uid: String
     ): Pair<String, User?> {
@@ -131,6 +162,25 @@ class DataRepository private constructor(
             ex.printStackTrace()
         }
         return Pair("Fatal error. Failed to load user.", null)
+    }
+    suspend fun resetPassword(email: String):Pair<String, String?> {
+        try {
+            val response = service.resetPassword(ResetPasswordRequest(email));
+            Log.d("DataRepository", response.code().toString())
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return Pair(it.status, it.message)
+                }
+            }
+
+            return Pair("Failed to reset password", null)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return Pair("Check internet connection. Failed to reset password.",null)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+        return Pair("Fatal error. Failed to load users.",null)
     }
     suspend fun apiListGeofence(): String {
         try {
@@ -202,4 +252,6 @@ class DataRepository private constructor(
             ex.printStackTrace()
         }
     }
+
+
 }

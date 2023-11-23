@@ -129,6 +129,10 @@ class ProfileFragment : Fragment() {
                 PreferenceData.getInstance().clearData(requireContext())
                 it.findNavController().navigate(R.id.action_profile_intro)
             }
+            bnd.changePasswordBtn.setOnClickListener {
+                it.findNavController().navigate(R.id.action_profile_password)
+
+            }
             annotationManager = bnd.mapView.annotations.createCircleAnnotationManager()
 
             val hasPermission = hasPermissions(requireContext())

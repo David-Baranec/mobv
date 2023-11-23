@@ -60,25 +60,39 @@
             android:id="@+id/action_profile_intro"
             app:popUpToInclusive="true"
             app:destination="@id/introFragment" />
+        <action
+            android:id="@+id/action_profile_password"
+            app:popUpToInclusive="true"
+            app:destination="@id/passwordFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/resetPasswordFragment"
-        android:name="com.example.cvicenie2.ForgottenPasswordFragment"
-        android:label="ResetPasswordFragment" />
-    <fragment
         android:id="@+id/emailFragment"
         android:name="com.example.cvicenie2.fragments.EmailFragment"
-        android:label="emailFragment" />
+        android:label="emailFragment">
+        <action
+            android:id="@+id/action_email_intro"
+            app:popUpToInclusive="true"
+            app:destination="@id/introFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.example.cvicenie2.fragments.ChangePasswordFragment"
+        android:label="passwordFragment" >
+        <action
+            android:id="@+id/action_password_feed"
+            app:popUpToInclusive="true"
+            app:destination="@id/feedFragment"/>
+    </fragment>
+
     <action
-        android:id="@+id/action_to_email"
+        android:id="@+id/action_intro_email"
         app:destination="@id/emailFragment" />
     <action
         android:id="@+id/action_intro_login"
         app:destination="@id/loginFragment" />
-    <action
-        android:id="@+id/action_to_reset_password"
-        app:destination="@id/resetPasswordFragment" />
+
 
     <action
         android:id="@+id/action_to_feed"
