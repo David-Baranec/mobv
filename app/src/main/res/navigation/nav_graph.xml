@@ -41,7 +41,10 @@
             app:popUpToInclusive="true"
             app:destination="@id/feedFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.example.cvicenie2.fragments.PhotoFragment"
+        android:label="PhotoFragment" />
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.example.cvicenie2.fragments.FeedFragment"
@@ -64,6 +67,10 @@
             android:id="@+id/action_profile_password"
             app:popUpToInclusive="true"
             app:destination="@id/passwordFragment" />
+        <action
+            android:id="@+id/action_profile_photo"
+            app:popUpToInclusive="true"
+            app:destination="@id/photoFragment" />
     </fragment>
 
     <fragment

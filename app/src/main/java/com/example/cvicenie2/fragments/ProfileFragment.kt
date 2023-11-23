@@ -133,6 +133,10 @@ class ProfileFragment : Fragment() {
                 it.findNavController().navigate(R.id.action_profile_password)
 
             }
+            bnd.editPhotoBtn.setOnClickListener {
+                PreferenceData.getInstance().clearData(requireContext())
+                it.findNavController().navigate(R.id.action_profile_photo)
+            }
             annotationManager = bnd.mapView.annotations.createCircleAnnotationManager()
 
             val hasPermission = hasPermissions(requireContext())

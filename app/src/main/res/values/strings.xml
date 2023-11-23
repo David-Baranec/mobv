@@ -20,6 +20,7 @@
     <string name="odhlasit_sa" translatable="false">Odhlasit sa</string>
     <string name="odoslat" translatable="false">Odoslat</string>
     <string name="change_password">zmenit heslo</string>
+    <string name="uprav_fotku">Uprav fotku</string>
 
 
 </resources>

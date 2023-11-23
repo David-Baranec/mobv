@@ -61,15 +61,15 @@
             android:layout_width="91dp"
             android:layout_height="68dp"
             android:layout_margin="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name" />
 
         <Button
             android:id="@+id/logout_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="156dp"
+            android:layout_height="50dp"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
@@ -77,22 +77,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/location_label" />
 
+
         <Button
             android:id="@+id/changePasswordBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="157dp"
+            android:layout_height="53dp"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="12dp"
             android:text="@string/change_password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logout_btn" />
-
+        <Button
+            android:id="@+id/editPhoto_btn"
+            android:layout_width="156dp"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/uprav_fotku"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/changePasswordBtn" />
 
         <com.mapbox.maps.MapView
             android:id="@+id/mapView"
-            android:layout_width="329dp"
-            android:layout_height="290dp"
+            android:layout_width="318dp"
+            android:layout_height="248dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,9 +123,18 @@
             app:layout_constraintStart_toStartOf="@id/mapView"
             app:layout_constraintTop_toTopOf="@id/mapView" />
 
+        <ImageView
+            android:id="@+id/map"
+            android:layout_width="172dp"
+            android:layout_height="117dp"
+            android:padding="13dp"
+            android:src="@drawable/user_playstore"
+            app:layout_constraintStart_toEndOf="@id/logout_btn"
+            app:layout_constraintTop_toTopOf="@id/logout_btn"/>
+
         <com.example.cvicenie2.BottomBar
-            style="@style/AppTheme"
             android:id="@+id/bottom_bar"
+            style="@style/AppTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
