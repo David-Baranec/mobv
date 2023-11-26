@@ -4,9 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +18,7 @@ import com.example.cvicenie2.R
 import com.example.cvicenie2.data.DataRepository
 import com.example.cvicenie2.databinding.FragmentProfilePhotoBinding
 import com.example.cvicenie2.viewmodels.AuthViewModel
+import java.io.File
 
 class PhotoFragment : Fragment() {
     private lateinit var viewModel: AuthViewModel
@@ -51,18 +55,28 @@ class PhotoFragment : Fragment() {
                 imageChooser()
             }
         }.also { bnd ->
-            viewModel.resetStatus.observe(viewLifecycleOwner) {
-                if (it == "success") {
-                    requireView().findNavController().navigate(R.id.action_email_intro)
+
+            viewModel.photoResult.observe(viewLifecycleOwner) {
+                Log.d("PhotoFragment", it.first)
+                if (it.first == "success") {
+                    requireView().findNavController().navigate(R.id.action_photo_profile)
+                } else
+                    Log.d("PhotoFragment", "failure")
+            }
+
+            viewModel.imageFile.observe(viewLifecycleOwner) { file ->
+                // Update UI with the selected image file
+                // For example, you might want to display the image in an ImageView
+                if (file != null) {
+                    binding.IVPreviewImage.setImageURI(file.toUri())
                 }
             }
         }
     }
 
     private fun imageChooser() {
-        val intent = Intent()
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(
             Intent.createChooser(intent, "Select Picture"),
             SELECT_PICTURE
@@ -76,11 +90,25 @@ class PhotoFragment : Fragment() {
             if (requestCode == SELECT_PICTURE) {
                 val selectedImageUri: Uri? = data?.data
                 if (selectedImageUri != null) {
-                    // Handle the selected image URI as needed
-                    // For example, update the preview image in the layout
-                    binding.IVPreviewImage.setImageURI(selectedImageUri)
+                    // Convert URI to File and set it in the ViewModel
+                    val selectedImageFile = File(getRealPathFromURI(selectedImageUri))
+                    viewModel.setImageFile(selectedImageFile)
                 }
             }
         }
+    }
+
+    private fun getRealPathFromURI(uri: Uri): String {
+        val contentResolver = requireActivity().contentResolver
+        val inputStream = contentResolver.openInputStream(uri)
+        val file = createTempFile("image", null, requireContext().cacheDir)
+
+        inputStream?.use { input ->
+            file.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
+
+        return file.absolutePath
     }
 }

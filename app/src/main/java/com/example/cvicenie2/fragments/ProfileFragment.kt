@@ -245,12 +245,12 @@ class ProfileFragment : Fragment() {
             // Check the current time and toggle sharing accordingly
             val currentTime = Calendar.getInstance()
             val startSharingTime = Calendar.getInstance().apply {
-                set(Calendar.HOUR_OF_DAY, 9)
+                set(Calendar.HOUR_OF_DAY, 10)
                 set(Calendar.MINUTE, 0)
                 set(Calendar.SECOND, 0)
             }
             val endSharingTime = Calendar.getInstance().apply {
-                set(Calendar.HOUR_OF_DAY, 23)
+                set(Calendar.HOUR_OF_DAY, 16)
                 set(Calendar.MINUTE, 0)
                 set(Calendar.SECOND, 0)
             }
@@ -282,7 +282,7 @@ class ProfileFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private fun turnOnSharing() {
-        Log.d("ProfileFragment", "turnOnSharing")
+       // Log.d("ProfileFragment", "turnOnSharing")
 
         if (!hasPermissions(requireContext())) {
             binding.locationSwitch.isChecked = false
@@ -297,7 +297,7 @@ class ProfileFragment : Fragment() {
 
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) {
             // Logika pre prácu s poslednou polohou
-            Log.d("ProfileFragment", "poloha posledna ${it ?: "-"}")
+            //Log.d("ProfileFragment", "poloha posledna ${it ?: "-"}")
             if (it == null) {
                 Log.e("ProfileFragment", "poloha neznama geofence nevytvoreny")
             } else {
