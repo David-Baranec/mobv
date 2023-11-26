@@ -47,6 +47,19 @@ class PreferenceData private constructor() {
 
         return sharing
     }
+    fun putSharingAuto(context: Context?, sharing: Boolean) {
+        val sharedPref = getSharedPreferences(context) ?: return
+        val editor = sharedPref.edit()
+        editor.putBoolean(sharingKeyAuto, sharing)
+        editor.apply()
+    }
+
+    fun getSharingAuto(context: Context?): Boolean {
+        val sharedPref = getSharedPreferences(context) ?: return false
+        val sharing = sharedPref.getBoolean(sharingKeyAuto, false)
+
+        return sharing
+    }
     companion object {
         @Volatile
         private var INSTANCE: PreferenceData? = null
@@ -62,6 +75,8 @@ class PreferenceData private constructor() {
         private const val shpKey = AppConfig.SharedPreferences_KEY
         private const val userKey = "userKey"
         private const val sharingKey = "sharingKey"
+        private const val sharingKeyAuto = "sharingKeyAuto"
+
 
 
     }

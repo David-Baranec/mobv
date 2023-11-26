@@ -9,6 +9,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.location.Location
 import android.os.Build
+import android.os.Handler
 import android.util.Log
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -25,6 +26,7 @@ import androidx.fragment.app.Fragment
 import com.example.cvicenie2.BottomBar
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.example.cvicenie2.R
 import com.example.cvicenie2.databinding.FragmentProfileBinding
 import androidx.lifecycle.ViewModel
@@ -49,6 +51,7 @@ import com.mapbox.maps.plugin.gestures.addOnMapClickListener
 import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
+import java.util.Calendar
 
 
 class ProfileFragment : Fragment() {
@@ -56,7 +59,17 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private var selectedPoint: CircleAnnotation? = null
     private var lastLocation: Point? = null
+    private val handler = Handler()
+    private val TIME_CHECK_INTERVAL = 1 * 1 * 1000L // 1seconds
     private lateinit var annotationManager: CircleAnnotationManager
+    @Volatile
+    private var sharingMode: SharingMode = SharingMode.MANUAL
+
+    enum class SharingMode {
+        MANUAL,
+        AUTOMATIC
+    }
+
     private val PERMISSIONS_REQUIRED = when {
         Build.VERSION.SDK_INT >= 33 -> { // android 13
             arrayOf(
@@ -92,7 +105,10 @@ class ProfileFragment : Fragment() {
                 addLocationListeners()
             }
         }
-
+    // Function to check if the current time is within a specified range
+    private fun isTimeInRange(currentTime: Calendar, startTime: Calendar, endTime: Calendar): Boolean {
+        return currentTime.after(startTime) && currentTime.before(endTime)
+    }
     fun hasPermissions(context: Context) = PERMISSIONS_REQUIRED.all {
         ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
     }
@@ -112,6 +128,7 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
@@ -161,20 +178,112 @@ class ProfileFragment : Fragment() {
                     ).show()
                 }
             }
+            //bnd.locationSwitch.isChecked = sharingMode == SharingMode.MANUAL
             bnd.locationSwitch.isChecked = PreferenceData.getInstance().getSharing(requireContext())
+
+            bnd.locationAutomatSwitch.isChecked = PreferenceData.getInstance().getSharingAuto(requireContext())
+            //bnd.locationAutomatSwitch.isChecked = sharingMode == SharingMode.AUTOMATIC
+            Log.d("ProfileFragmentCHECK", "sharing mode ${sharingMode}")
+
             bnd.locationSwitch.setOnCheckedChangeListener { _, checked ->
-                Log.d("ProfileFragment", "sharing je $checked")
+                Log.d("ProfileFragment", "sharing manual je $checked")
                 if (checked) {
-                    turnOnSharing()
+                    turnOnSharingManually()
                 } else {
                     turnOffSharing()
                 }
             }
+            if(bnd.locationAutomatSwitch.isChecked){
+                turnOnSharingAutomatically()
+            }else turnOffSharingAutomatically()
+            bnd.locationAutomatSwitch.setOnCheckedChangeListener { _, checked ->
+                if (checked) {
+                    Log.d("ProfileFragment", "sharing automatic je $checked")
+                    turnOnSharingAutomatically()
+                } else {
+                    bnd.locationSwitch.isChecked = sharingMode == SharingMode.MANUAL
+                    turnOffSharingAutomatically()
+
+                }
+            }
         }
     }
+    private fun turnOffSharingAutomatically() {
+        Log.d("ProfileFragment", "turnOffSharing")
+        PreferenceData.getInstance().putSharingAuto(requireContext(), false)
+        removeGeofence()
+        sharingMode = SharingMode.MANUAL
+        Log.d("ProfileFragmentModeSet", "$sharingMode")
+        // Update UI state on the main thread
+        handler.removeCallbacksAndMessages(timeCheckRunnable)
+        requireActivity().runOnUiThread {
+            binding.locationAutomatSwitch.isChecked = false
+        }
+    }
+    // Function to handle automatic sharing toggle
+    private fun turnOnSharingAutomatically() {
+        // Set sharing mode to AUTOMATIC
+        sharingMode = SharingMode.AUTOMATIC
+        PreferenceData.getInstance().putSharingAuto(requireContext(), true)
+        // Schedule a periodic check to toggle sharing based on time
+        handler.removeCallbacksAndMessages(null)
+        handler.postDelayed(timeCheckRunnable, TIME_CHECK_INTERVAL)
+    }
+
+    // Function to handle manual sharing toggle
+    private fun turnOnSharingManually() {
+        // Set sharing mode to MANUAL
+        sharingMode = SharingMode.MANUAL
+
+        // Perform actions for manual sharing (similar to existing turnOnSharing logic)
+        turnOnSharing()
+        PreferenceData.getInstance().putSharing(requireContext(), true)
+    }
+
+    private val timeCheckRunnable = object : Runnable {
+        override fun run() {
+            // Check the current time and toggle sharing accordingly
+            val currentTime = Calendar.getInstance()
+            val startSharingTime = Calendar.getInstance().apply {
+                set(Calendar.HOUR_OF_DAY, 9)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+            }
+            val endSharingTime = Calendar.getInstance().apply {
+                set(Calendar.HOUR_OF_DAY, 23)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+            }
+
+            // Ensure that UI updates are done on the main thread
+            requireActivity().runOnUiThread {
+                Log.d("Profilemainthread", "$sharingMode")
+
+                if (binding.locationAutomatSwitch.isChecked &&
+                    sharingMode == SharingMode.AUTOMATIC &&
+                    isTimeInRange(currentTime, startSharingTime, endSharingTime)
+                ) {
+                    // It's within the sharing time range, so turn on sharing
+                    turnOnSharing()
+
+                }
+                if (!binding.locationAutomatSwitch.isChecked) {
+                    handler.removeCallbacks(this)
+                    sharingMode=SharingMode.MANUAL
+                }
+
+
+                if (sharingMode == SharingMode.AUTOMATIC && isFragmentVisible()) {
+                    handler.postDelayed(this, TIME_CHECK_INTERVAL)
+                }
+            }
+        }
+    }
+
     @SuppressLint("MissingPermission")
     private fun turnOnSharing() {
         Log.d("ProfileFragment", "turnOnSharing")
+
         if (!hasPermissions(requireContext())) {
             binding.locationSwitch.isChecked = false
             for (p in PERMISSIONS_REQUIRED) {
@@ -182,7 +291,7 @@ class ProfileFragment : Fragment() {
             }
             return
         }
-        PreferenceData.getInstance().putSharing(requireContext(), true)
+
 
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
@@ -316,7 +425,7 @@ class ProfileFragment : Fragment() {
     }
 
     private val onIndicatorPositionChangedListener = OnIndicatorPositionChangedListener {
-        Log.d("MapFragment", "poloha je $it")
+
         refreshLocation(it)
     }
 
@@ -373,9 +482,13 @@ class ProfileFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        handler.removeCallbacks(timeCheckRunnable)
         binding.mapView.apply {
             location.removeOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener)
             gestures.removeOnMoveListener(onMoveListener)
         }
+    }
+    private fun isFragmentVisible(): Boolean {
+        return isAdded && isVisible && userVisibleHint && !isRemoving
     }
 }

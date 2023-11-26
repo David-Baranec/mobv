@@ -13,76 +13,89 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="68dp"
-            android:layout_height="51dp"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:layout_marginStart="16dp"
-            android:text="@string/profile"
-            app:layout_constraintBottom_toBottomOf="@id/load_profile_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/load_profile_btn"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="@{model.userResult.username}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView" />
-
-        <Button
-            android:id="@+id/load_profile_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="216dp"
-            android:layout_marginEnd="56dp"
-            android:text="@string/nacitaj_profil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/location_label"
-            android:layout_width="147dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="16dp"
-            android:text="Share my location"
+            android:layout_width="170dp"
+            android:layout_height="48dp"
+            android:layout_margin="6dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="10dp"
+            android:text="Zdieľať moju polohu neustále"
             app:layout_constraintBottom_toBottomOf="@id/location_switch"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/location_switch"
             app:layout_constraintVertical_bias="1.0" />
 
+        <TextView
+            android:id="@+id/auto_location_label"
+            android:layout_width="172dp"
+            android:layout_height="46dp"
+            android:layout_margin="6dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="10dp"
+            android:text="Zdieľať polohu v čase 9:00-17:00"
+            app:layout_constraintBottom_toBottomOf="@id/location_automat_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/location_switch"
+            app:layout_constraintVertical_bias="1.0" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/location_switch"
-            android:layout_width="91dp"
-            android:layout_height="68dp"
-            android:layout_margin="16dp"
-            android:layout_marginTop="100dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name" />
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/location_automat_switch"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location_switch" />
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:text="@{model.userResult.username}"
+            app:layout_constraintBottom_toBottomOf="@id/load_profile_btn"
+            app:layout_constraintStart_toEndOf="@id/load_profile_btn" />
+
+        <Button
+            android:id="@+id/load_profile_btn"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/nacitaj_profil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location_automat_switch" />
 
         <Button
             android:id="@+id/logout_btn"
-            android:layout_width="156dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="5dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:text="@string/odhlasit_sa"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/location_label" />
+            app:layout_constraintTop_toBottomOf="@id/load_profile_btn" />
 
 
         <Button
             android:id="@+id/changePasswordBtn"
-            android:layout_width="157dp"
-            android:layout_height="53dp"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:text="@string/change_password"
@@ -90,9 +103,9 @@
             app:layout_constraintTop_toBottomOf="@id/logout_btn" />
         <Button
             android:id="@+id/editPhoto_btn"
-            android:layout_width="156dp"
+            android:layout_width="170dp"
             android:layout_height="50dp"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_margin="5dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:text="@string/uprav_fotku"
@@ -101,13 +114,11 @@
 
         <com.mapbox.maps.MapView
             android:id="@+id/mapView"
-            android:layout_width="318dp"
-            android:layout_height="248dp"
+            android:layout_width="274dp"
+            android:layout_height="237dp"
             app:layout_constraintBottom_toTopOf="@id/bottom_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.969"
             app:mapbox_cameraTargetLat="40.7128"
             app:mapbox_cameraTargetLng="-74.0060"
             app:mapbox_cameraZoom="9.0" />
@@ -128,17 +139,17 @@
             android:layout_width="172dp"
             android:layout_height="117dp"
             android:padding="13dp"
-            android:src="@drawable/user_playstore"
+            android:src="@drawable/user"
+            android:layout_margin="30dp"
             app:layout_constraintStart_toEndOf="@id/logout_btn"
             app:layout_constraintTop_toTopOf="@id/logout_btn"/>
 
         <com.example.cvicenie2.BottomBar
             android:id="@+id/bottom_bar"
-            style="@style/AppTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
