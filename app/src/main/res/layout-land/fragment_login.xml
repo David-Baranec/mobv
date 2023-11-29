@@ -12,16 +12,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp">
+        android:layout_margin="20sp">
         <TextView
             android:id="@+id/header_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="8sp"
+            android:layout_marginEnd="8sp"
             android:textAlignment="center"
-            android:textSize="24dp"
+            android:textSize="40sp"
             android:text="@string/title_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,67 +29,67 @@
 
         <TextView
             android:id="@+id/label_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="216dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="140sp"
+            android:layout_height="50sp"
+            android:layout_marginStart="192dp"
+            android:layout_marginTop="24sp"
             android:text="@string/username"
+            android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_title" />
 
         <EditText
             android:id="@+id/edit_text_username"
-            android:layout_width="372dp"
-            android:layout_height="88dp"
+            android:layout_width="300sp"
+            android:layout_height="50sp"
             android:hint="@string/zadajte_username"
             android:text="@={model.username}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.656"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_username" />
+            app:layout_constraintTop_toTopOf="@+id/label_username" />
 
         <TextView
             android:id="@+id/label_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="216dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="140sp"
+            android:layout_height="50sp"
+            android:layout_marginStart="192dp"
+            android:layout_marginTop="4sp"
             android:text="@string/heslo"
+            android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_username" />
 
         <EditText
             android:id="@+id/edit_text_password"
-            android:layout_width="370dp"
-            android:layout_height="83dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="300sp"
+            android:layout_height="50sp"
             android:hint="@string/zadajte_heslo"
             android:text="@={model.password}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.656"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_password" />
+            app:layout_constraintTop_toTopOf="@+id/label_password" />
 
         <Button
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:onClick="@{()->model.loginUser()}"
             android:text="@string/prihlasit_sa"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_password"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.366"
+            app:layout_constraintHorizontal_bias="0.371"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/reset_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:text="reset hesla"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_password"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.64"
+            app:layout_constraintHorizontal_bias="0.646"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

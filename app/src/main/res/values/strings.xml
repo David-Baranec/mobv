@@ -1,26 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">Cvicenie2</string>
-    <string name="title_login" translatable="false">Prihlasenie</string>
+    <string name="app_name" translatable="false">MOBV</string>
+    <string name="title_login" translatable="false">Prihlásenie</string>
     <string name="title_intro" translatable="false">Intro</string>
-    <string name="title_signup" translatable="false">Registracia</string>
-    <string name="map" translatable="false">Map</string>
+    <string name="title_signup" translatable="false">Registrácia</string>
+    <string name="map" translatable="false">Mapa</string>
     <string name="feed" translatable="false">Feed</string>
-    <string name="profile" translatable="false">Profile</string>
-    <string name="email" translatable="false">Email:</string>
+    <string name="profile" translatable="false">Profil</string>
+    <string name="email" translatable="false">Email</string>
     <string name="zadajte_email" translatable="false">Zadajte email</string>
-    <string name="username" translatable="false">Username:</string>
-    <string name="zadajte_username" translatable="false">Zadajte username</string>
+    <string name="username" translatable="false">Meno</string>
+    <string name="zadajte_username" translatable="false">Zadajte meno</string>
     <string name="heslo" translatable="false">Heslo</string>
     <string name="zadajte_heslo" translatable="false">Zadajte heslo</string>
     <string name="zopakujte_heslo" translatable="false">Zopakujte heslo</string>
     <string name="registruj_sa" translatable="false">Registruj sa</string>
-    <string name="prihlasit_sa" translatable="false">Prihlasit sa</string>
+    <string name="prihlasit_sa" translatable="false">Prihlásiť sa</string>
     <string name="zabudnute_heslo" translatable="false">Zabudnuté heslo</string>
-    <string name="nacitaj_profil" translatable="false">Nacitaj profil</string>
-    <string name="odhlasit_sa" translatable="false">Odhlasit sa</string>
-    <string name="odoslat" translatable="false">Odoslat</string>
-    <string name="change_password">zmenit heslo</string>
-    <string name="uprav_fotku">Uprav fotku</string>
+    <string name="nacitaj_profil" translatable="false">Načítať profil</string>
+    <string name="odhlasit_sa" translatable="false">Odhlásiť sa</string>
+    <string name="odoslat" translatable="false">Odoslať</string>
+    <string name="change_password">Zmeniť heslo</string>
+    <string name="uprav_fotku">Upraviť fotku</string>
 
 
 </resources>

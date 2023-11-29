@@ -14,6 +14,10 @@ class AuthInterceptor(private val context: Context) : Interceptor {
 
         if (chain.request().url.toUrl().path.contains("/user/create.php", true)
             || chain.request().url.toUrl().path.contains("/user/login.php", true)
+            || chain.request().url.toUrl().path.contains("/user/password.php", true)
+            || chain.request().url.toUrl().path.contains("/user/photo.php", true)
+
+
         ) {
             //here we do not need a authorization token
         } else if (chain.request().url.toUrl().path.contains("/user/refresh.php", true)) {

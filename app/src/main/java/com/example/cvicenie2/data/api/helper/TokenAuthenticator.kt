@@ -14,6 +14,7 @@ class TokenAuthenticator(val context: Context) : Authenticator {
         if (response.request.url.toUrl().path.contains("/user/create.php", true)
             || response.request.url.toUrl().path.contains("/user/login.php", true)
             || response.request.url.toUrl().path.contains("/user/refresh.php", true)
+            || response.request.url.toUrl().path.contains("/user/photo.php", true)
         ) {
             //here we do not need a authorization token
         } else {

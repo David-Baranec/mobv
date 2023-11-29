@@ -245,12 +245,12 @@ class ProfileFragment : Fragment() {
             // Check the current time and toggle sharing accordingly
             val currentTime = Calendar.getInstance()
             val startSharingTime = Calendar.getInstance().apply {
-                set(Calendar.HOUR_OF_DAY, 10)
+                set(Calendar.HOUR_OF_DAY, 9)
                 set(Calendar.MINUTE, 0)
                 set(Calendar.SECOND, 0)
             }
             val endSharingTime = Calendar.getInstance().apply {
-                set(Calendar.HOUR_OF_DAY, 16)
+                set(Calendar.HOUR_OF_DAY, 17)
                 set(Calendar.MINUTE, 0)
                 set(Calendar.SECOND, 0)
             }
