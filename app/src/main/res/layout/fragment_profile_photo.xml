@@ -15,9 +15,10 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="146dp"
-            android:layout_height="47dp"
-            android:text="Photo editor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="Profilový Obrázok"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,30 +31,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="SELECT IMAGE"
+            android:layout_marginStart="48sp"
+            android:text="Vybrať obrázok"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/textView"
-            app:layout_constraintTop_toBottomOf="@id/textView"
-            android:layout_marginBottom="30dp"/>
+            app:layout_constraintTop_toBottomOf="@id/textView" />
 
         <ImageView
             android:id="@+id/IVPreviewImage"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="300sp"
             android:layout_below="@id/BSelectImage"
             app:imageUrl="@{model.imageFile}"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="30sp"
             app:layout_constraintTop_toBottomOf="@id/BSelectImage"/>
 
         <Button
             android:id="@+id/submit_button"
-            android:layout_width="143dp"
-            android:layout_height="0dp"
+            android:layout_width="143sp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="Odoslat"
-            android:textSize="18sp"
+            android:layout_marginStart="84sp"
+            android:layout_marginTop="28sp"
             android:onClick="@{() -> model.uploadPhoto()}"
+            android:text="Odoslať"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/textView"
             app:layout_constraintTop_toBottomOf="@id/IVPreviewImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
