@@ -26,12 +26,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.154" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/BSelectImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="48sp"
+            app:cornerRadius="35sp"
             android:text="Vybrať obrázok"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/textView"
@@ -46,9 +47,10 @@
             android:layout_marginTop="30sp"
             app:layout_constraintTop_toBottomOf="@id/BSelectImage"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/submit_button"
             android:layout_width="143sp"
+            app:cornerRadius="35sp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="84sp"

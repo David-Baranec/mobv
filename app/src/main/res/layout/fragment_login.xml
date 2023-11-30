@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp">
+        android:layout_margin="20sp">
 
         <TextView
             android:id="@+id/header_title"
@@ -62,16 +62,18 @@
             android:layout_width="370sp"
             android:layout_height="80sp"
             android:hint="@string/zadajte_heslo"
+            android:inputType="textPassword"
             android:text="@={model.password}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_password" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="35sp"
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="276dp"
+            android:layout_marginBottom="276sp"
             android:onClick="@{()->model.loginUser()}"
             android:text="@string/prihlasit_sa"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -79,11 +81,12 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/reset_button"
+            app:cornerRadius="35sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="208dp"
+            android:layout_marginBottom="208sp"
             android:text="reset hesla"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

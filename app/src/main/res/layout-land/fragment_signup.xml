@@ -93,6 +93,7 @@
             android:layout_height="50sp"
             android:hint="@string/zadajte_heslo"
             android:text="@={model.password}"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,17 +114,19 @@
             android:layout_width="350sp"
             android:layout_height="50sp"
             android:hint="@string/zopakujte_heslo"
+            android:inputType="textPassword"
             android:text="@={model.repeat_password}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/label_password_repeat" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="160sp"
+            app:cornerRadius="35sp"
             android:onClick="@{()->model.registerUser()}"
             android:text="@string/registruj_sa"
             app:layout_constraintBottom_toBottomOf="parent"

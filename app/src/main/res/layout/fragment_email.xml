@@ -52,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="136sp"
+            app:cornerRadius="35sp"
             android:layout_marginBottom="216sp"
             android:onClick="@{()->model.resetPassword()}"
             android:text="@string/odoslat"
