@@ -13,7 +13,7 @@
     <string name="heslo" translatable="false">Heslo</string>
     <string name="zadajte_heslo" translatable="false">Zadajte heslo</string>
     <string name="zopakujte_heslo" translatable="false">Zopakujte heslo</string>
-    <string name="registruj_sa" translatable="false">Registruj sa</string>
+    <string name="registruj_sa" translatable="false">Registrovať</string>
     <string name="prihlasit_sa" translatable="false">Prihlásiť sa</string>
     <string name="zabudnute_heslo" translatable="false">Zabudnuté heslo</string>
     <string name="nacitaj_profil" translatable="false">Načítať profil</string>

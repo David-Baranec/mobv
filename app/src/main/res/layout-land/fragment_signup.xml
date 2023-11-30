@@ -34,7 +34,7 @@
             android:id="@+id/label_email"
             android:layout_width="161sp"
             android:layout_height="50sp"
-            android:layout_marginStart="116sp"
+            android:layout_marginStart="80sp"
             android:layout_marginTop="12sp"
             android:text="@string/email"
             android:textSize="28sp"
@@ -43,12 +43,12 @@
 
         <EditText
             android:id="@+id/edit_text_email"
-            android:layout_width="400sp"
+            android:layout_width="350sp"
             android:layout_height="50sp"
             android:hint="@string/zadajte_email"
             android:text="@={model.email}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.802"
+            app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/label_email" />
 
@@ -56,7 +56,7 @@
             android:id="@+id/label_username"
             android:layout_width="161sp"
             android:layout_height="50sp"
-            android:layout_marginStart="116sp"
+            android:layout_marginStart="80sp"
 
             android:layout_marginTop="8sp"
             android:text="@string/username"
@@ -66,12 +66,12 @@
 
         <EditText
             android:id="@+id/edit_text_username"
-            android:layout_width="400sp"
+            android:layout_width="350sp"
             android:layout_height="50sp"
             android:hint="@string/zadajte_username"
             android:text="@={model.username}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/label_username" />
 
@@ -80,7 +80,7 @@
             android:layout_width="161sp"
             android:layout_height="50sp"
 
-            android:layout_marginStart="116sp"
+            android:layout_marginStart="80sp"
             android:layout_marginTop="4sp"
             android:text="@string/heslo"
             android:textSize="28sp"
@@ -89,12 +89,12 @@
 
         <EditText
             android:id="@+id/edit_text_password"
-            android:layout_width="400sp"
+            android:layout_width="350sp"
             android:layout_height="50sp"
             android:hint="@string/zadajte_heslo"
             android:text="@={model.password}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.802"
+            app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/label_password" />
 
@@ -102,8 +102,7 @@
             android:id="@+id/label_password_repeat"
             android:layout_width="210sp"
             android:layout_height="50sp"
-            android:layout_marginStart="116sp"
-            android:layout_marginTop="4sp"
+            android:layout_marginStart="30sp"
             android:text="@string/zopakujte_heslo"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,12 +110,12 @@
 
         <EditText
             android:id="@+id/edit_text_password_repeat"
-            android:layout_width="400sp"
+            android:layout_width="350sp"
             android:layout_height="50sp"
             android:hint="@string/zopakujte_heslo"
             android:text="@={model.repeat_password}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.802"
+            app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/label_password_repeat" />
 
@@ -124,12 +123,13 @@
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36sp"
+            android:layout_marginBottom="160sp"
             android:onClick="@{()->model.registerUser()}"
             android:text="@string/registruj_sa"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
+            app:layout_constraintHorizontal_bias="0.96"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
