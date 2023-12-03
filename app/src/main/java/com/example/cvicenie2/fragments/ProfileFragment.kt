@@ -34,6 +34,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.cvicenie2.broadcastReceivers.GeofenceBroadcastReceiver
 import com.example.cvicenie2.data.DataRepository
+import com.example.cvicenie2.viewmodels.AuthViewModel
 import com.example.cvicenie2.viewmodels.ProfileViewModel
 import com.example.cvicenie2.workers.MyWorker
 import com.google.android.material.snackbar.Snackbar
@@ -64,6 +65,8 @@ class ProfileFragment : Fragment() {
     private lateinit var annotationManager: CircleAnnotationManager
     @Volatile
     private var sharingMode: SharingMode = SharingMode.MANUAL
+    private lateinit var viewAuthModel: AuthViewModel
+
 
     enum class SharingMode {
         MANUAL,
@@ -120,6 +123,11 @@ class ProfileFragment : Fragment() {
                 return ProfileViewModel(DataRepository.getInstance(requireContext())) as T
             }
         })[ProfileViewModel::class.java]
+        viewAuthModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return AuthViewModel(DataRepository.getInstance(requireContext())) as T
+            }
+        })[AuthViewModel::class.java]
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -144,6 +152,8 @@ class ProfileFragment : Fragment() {
             }
             bnd.logoutBtn.setOnClickListener {
                 PreferenceData.getInstance().clearData(requireContext())
+                viewModel.resetUserResult()
+                viewAuthModel.resetUserResult()
                 it.findNavController().navigate(R.id.action_profile_intro)
             }
             bnd.changePasswordBtn.setOnClickListener {

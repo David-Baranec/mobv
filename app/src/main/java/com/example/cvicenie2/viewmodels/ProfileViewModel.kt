@@ -18,6 +18,7 @@ class ProfileViewModel(private val dataRepository: DataRepository) : ViewModel()
 
     val userResult: LiveData<User?> get() = _userResult
 
+
     fun loadUser(uid: String) {
         viewModelScope.launch {
             val result = dataRepository.apiGetUser(uid)
@@ -31,7 +32,10 @@ class ProfileViewModel(private val dataRepository: DataRepository) : ViewModel()
             dataRepository.insertGeofence(GeofenceEntity(lat, lon, radius))
         }
     }
+    fun resetUserResult() {
+        _userResult.value =null;
 
+    }
     fun removeGeofence() {
         viewModelScope.launch {
             dataRepository.removeGeofence()
